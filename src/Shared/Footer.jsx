@@ -4,7 +4,7 @@ import { FaFacebookF, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa'
 const Footer = () => {
     return (
 
-        <footer className=" footer bg-black text-white text-base-content p-10 flex justify-around ">
+        <footer className=" footer bg-black text-white text-base-content p-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:px-20 justify-around ">
             <aside>
                 <a className='btn btn-ghost  text-xl md:text-2xl  text-sky-500 border border-sky-500'>
                     E-hospital
