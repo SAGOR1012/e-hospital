@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login.jsx";
 import Contact from "../Pages/Contact/Contact.jsx";
 import Doctors from "../Pages/Doctors/Doctors.jsx";
 import Appointment from "../Pages/Appoinment/Appointment.jsx";
+import PaymentForm from "../Pages/Payment/PaymentForm.jsx";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <Contact></Contact>
+            },
+            {
+                path: '/payment',
+                element: <PaymentForm></PaymentForm>
             }
         ]
     },

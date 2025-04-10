@@ -6,6 +6,7 @@ const Appointment = () => {
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors },
     } = useForm();
 
@@ -124,14 +125,40 @@ const Appointment = () => {
                             />
                             { errors.date && <p className="text-red-500 text-xs">{ errors.date.message }</p> }
                         </div>
+                        {/* Fee */ }
+                        <div>
+                            <label htmlFor="fee" className="text-xs xs:text-sm font-medium text-gray-700 mb-1">
+                                Doctor's Fee
+                            </label>
+                            <input
+                                type="text"
+                                id="fee"
+                                defaultValue={ `500 TAKA` }
+                                { ...register("fee", { required: "Fee is required" }) }
+                                className="h-[50px] w-full rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] px-2"
+                            />
+                            { errors.fee && <p className="text-red-500 text-xs">{ errors.fee.message }</p> }
+                        </div>
                     </div>
 
                     {/* Submit */ }
                     <div className="mt-8 pt-6 border-t border-gray-200 flex justify-end">
-                        <Link to='/payment'>
+                        <Link to="/payment">
                             <button
                                 type="submit"
-                                className="sm:w-[100px] w-full h-[50px] text-xs sm:text-base bg-sky-500 rounded-[5px] p-[13px_25px] gap-[10px] text-white" >
+                                className="sm:w-[100px] w-full h-[50px] text-xs sm:text-base bg-sky-500 rounded-[5px] p-[13px_25px] gap-[10px] text-white disabled:bg-gray-400"
+                                /* kono ekta input fild jodi faka thake tahole submit button disable hoye thakbe  */
+                                disabled={
+                                    !watch("name") ||
+                                    !watch("email") ||
+                                    !watch("phone") ||
+                                    !watch("address") ||
+                                    !watch("department") ||
+                                    !watch("gender") ||
+                                    !watch("date") ||
+                                    Object.keys(errors).length > 0
+                                }
+                            >
                                 Payment
                             </button>
                         </Link>

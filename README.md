@@ -20,3 +20,5 @@ If you are developing a production application, we recommend using TypeScript an
 # Install React hook form for form validation
 
 # Install React Date picker for date picker
+
+# Install React hot toast for popup massage
