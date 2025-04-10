@@ -14,3 +14,9 @@ If you are developing a production application, we recommend using TypeScript an
 # Install React icon for using icon
 
 # Install React helmet for sowing page title
+
+# Install React router for routing
+
+# Install React hook form for form validation
+
+# Install React Date picker for date picker
