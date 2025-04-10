@@ -1,75 +1,88 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+    const navItems = (
+        <>
+            <li>
+                <Link to='/'>Home</Link>
+            </li>
+            <li>
+                <Link to='/doctors'>Doctors</Link>
+            </li>
+            <li>
+                <Link to='/appoinments'>Appointments</Link>
+            </li>
+            <li>
+                <Link to='/contact'>Contact</Link>
+            </li>
+        </>
+    );
     return (
-        <div>
-            <div className="navbar bg-base-100">
-                <div className="flex-1">
-                    <a className="btn btn-ghost text-xl">E-hospital</a>
+        <div className=' overflow-hidden'>
+            {/* nav 1 */ }
+            <div className='navbar bg-gray-800  flex justify-between'>
+                <div className=' '>
+                    <a className='btn btn-ghost  text-xl md:text-2xl  text-sky-500'>
+                        E-hospital
+                    </a>
                 </div>
-                <div className="flex-none">
-                    <div className="dropdown dropdown-end">
-
+                <div className=''>
+                    {/* <div className='dropdown dropdown-end'>
                         <div
                             tabIndex={ 0 }
-                            className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-                            <div className="card-body">
-                                <span className="text-lg font-bold">8 Items</span>
-                                <span className="text-info">Subtotal: $999</span>
-                                <div className="card-actions">
-                                    <button className="btn btn-primary btn-block">View cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={ 0 } role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
+                            role='button'
+                            className='btn btn-ghost btn-circle avatar'>
+                            <div className='w-10 rounded-full'>
                                 <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    alt='Tailwind CSS Navbar component'
+                                    src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'
+                                />
                             </div>
                         </div>
                         <ul
                             tabIndex={ 0 }
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className='menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow'>
                             <li>
-                                <a className="justify-between">
+                                <a className='justify-between'>
                                     Profile
-                                    <span className="badge">New</span>
+                                    <span className='badge'>New</span>
                                 </a>
                             </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li>
+                                <a>Logout</a>
+                            </li>
                         </ul>
+                    </div> */}
+                    <div className='navbar-end'>
+                        <Link to='/login' className='btn border border-sky-500 text-sky-500 '>Login</Link>
                     </div>
                 </div>
             </div>
             {/* Navbar 2 */ }
-            <div className="navbar bg-base-100">
-                <div className="navbar-start">
-                    <div className="dropdown">
-
+            <div className='navbar  w-full   bg-gray-200 border-b-4 border-sky-500 '>
+                {/* <div className='border border-red-500 w-full'>
+                    <div className='dropdown'>
                         <ul
                             tabIndex={ 0 }
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 3</a></li>
+                            className='menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow'>
+
+                            { navItems }
                         </ul>
                     </div>
+                </div> */}
+                <div className=' navbar-end w-full   uppercase'>
+                    <ul className='menu menu-horizontal px-1'>
 
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
-
-                        <li><a>Item 3</a></li>
+                        { navItems }
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
-                </div>
+                {/* <div className='navbar-end'>
+                    <Link to='/login' className='btn border border-sky-500 text-sky-500 '>Login</Link>
+                </div> */}
             </div>
+
+
         </div>
     );
 };
