@@ -1,20 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+    /* for active nav link */
+    const navLinkClass = ({ isActive }) =>
+        isActive ? "text-sky-500 font-semibold" : "text-gray-700";
+
     const navItems = (
         <>
-            <li>
-                <Link to='/'>Home</Link>
+            <li >
+                <NavLink to="/" className={ navLinkClass }>Home</NavLink>
             </li>
             <li>
-                <Link to='/doctors'>Doctors</Link>
+                <NavLink to="/doctors" className={ navLinkClass }>Doctors</NavLink>
             </li>
             <li>
-                <Link to='/appointment'>Appointments</Link>
+                <NavLink to="/appointment" className={ navLinkClass }>Appointment</NavLink>
             </li>
             <li>
-                <Link to='/contact'>Contact</Link>
+                <NavLink to="/contact" className={ navLinkClass }>Contact</NavLink>
             </li>
         </>
     );
@@ -28,32 +32,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className=''>
-                    {/* <div className='dropdown dropdown-end'>
-                        <div
-                            tabIndex={ 0 }
-                            role='button'
-                            className='btn btn-ghost btn-circle avatar'>
-                            <div className='w-10 rounded-full'>
-                                <img
-                                    alt='Tailwind CSS Navbar component'
-                                    src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'
-                                />
-                            </div>
-                        </div>
-                        <ul
-                            tabIndex={ 0 }
-                            className='menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow'>
-                            <li>
-                                <a className='justify-between'>
-                                    Profile
-                                    <span className='badge'>New</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>Logout</a>
-                            </li>
-                        </ul>
-                    </div> */}
+
                     <div className='navbar-end'>
                         <Link to='/login' className='btn border border-sky-500 text-sky-500 '>Login</Link>
                     </div>

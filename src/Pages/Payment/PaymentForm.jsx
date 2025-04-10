@@ -7,6 +7,7 @@ const PaymentForm = () => {
         register,
         handleSubmit,
         watch,
+        reset, // clean form after submit button
         formState: { errors },
     } = useForm();
 
@@ -16,6 +17,7 @@ const PaymentForm = () => {
         console.log("Payment Info:", data);
         /* success message */
         toast.success("Payment successful!");
+        reset(); /* rest form */
     };
 
     return (

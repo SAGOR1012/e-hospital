@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-const Login = () => {
+const Signup = () => {
   const {
     register,
     handleSubmit,
@@ -9,8 +9,8 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log('Login Data:', data);
-    // handle login logic here
+    console.log('Signup Data:', data);
+    // Handle signup logic here
   };
 
   return (
@@ -51,7 +51,7 @@ const Login = () => {
                         />
                       </svg>
                     </div>
-                    <span className='ml-4'>Login with Google</span>
+                    <span className='ml-4'>Sign up with Google</span>
                   </button>
                 </div>
 
@@ -61,18 +61,30 @@ const Login = () => {
                   </div>
                 </div>
 
-                {/* 🔽 Login Form Starts Here */}
+                {/* 🔽 Signup Form Starts Here */}
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className='mx-auto max-w-xs'>
                   <input
+                    {...register('name', { required: 'Name is required' })}
+                    className='w-full px-8 py-4 rounded-sm font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mb-5'
+                    type='text'
+                    placeholder='Full Name'
+                  />
+                  {errors.name && (
+                    <p className='text-red-500 text-xs -mt-4 mb-4'>
+                      {errors.name.message}
+                    </p>
+                  )}
+
+                  <input
                     {...register('email', { required: 'Email is required' })}
-                    className='w-full px-8 py-4 rounded-sm font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white'
+                    className='w-full px-8 py-4 rounded-sm font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mb-5'
                     type='email'
                     placeholder='Email'
                   />
                   {errors.email && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <p className='text-red-500 text-xs -mt-4 mb-4'>
                       {errors.email.message}
                     </p>
                   )}
@@ -80,20 +92,24 @@ const Login = () => {
                   <input
                     {...register('password', {
                       required: 'Password is required',
+                      minLength: {
+                        value: 6,
+                        message: 'Password must be at least 6 characters',
+                      },
                     })}
-                    className='w-full px-8 py-4 rounded-sm font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5'
+                    className='w-full px-8 py-4 rounded-sm font-medium border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mb-5'
                     type='password'
                     placeholder='Password'
                   />
                   {errors.password && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <p className='text-red-500 text-xs -mt-4 mb-4'>
                       {errors.password.message}
                     </p>
                   )}
 
                   <button
                     type='submit'
-                    className='mt-5 tracking-wide bg-indigo-500 text-gray-100 w-full py-4 rounded-sm hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'>
+                    className='tracking-wide bg-indigo-500 text-gray-100 w-full py-4 rounded-sm hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'>
                     <svg
                       className='w-6 h-6 -ml-2'
                       fill='none'
@@ -109,16 +125,16 @@ const Login = () => {
                       />
                       <path d='M20 8v6M23 11h-6' />
                     </svg>
-                    <span className='ml-3'>Login</span>
+                    <span className='ml-3'>Sign Up</span>
                   </button>
                 </form>
 
                 <p className='mt-6 text-xs text-gray-600 text-center'>
-                  Don't have an account?
+                  Already have an account?
                   <Link
-                    to='/signup'
+                    to='/login'
                     className='ml-1 text-sky-500'>
-                    Create an account
+                    Login here
                   </Link>
                 </p>
               </div>
@@ -138,4 +154,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import doctors from "../../../public/doctors.json"; // adjust path if needed
 import { FaPhoneAlt, FaEnvelope, FaPen } from "react-icons/fa";
 
 
 const Appointment = () => {
+    const navigate = useNavigate(); // for navigation one page to another page like "Link"
     const {
         register,
         handleSubmit,
@@ -15,6 +16,8 @@ const Appointment = () => {
 
     const onSubmit = (data) => {
         console.log("Appointment Data:", data);
+        // Navigate only after successful submission
+        navigate("/payment");
     };
 
     return (
@@ -80,24 +83,7 @@ const Appointment = () => {
                                 { errors.address && <p className="text-red-500 text-xs">{ errors.address.message }</p> }
                             </div>
 
-                            {/* Department */ }
-                            {/* <div>
-                            <label htmlFor="department" className="text-xs xs:text-sm font-medium text-gray-700 mb-1">
-                                Department
-                            </label>
-                            <select
-                                id="department"
-                                { ...register("department", { required: "Department is required" }) }
-                                className="h-[50px] w-full rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] px-2"
-                            >
-                                <option value="">Select</option>
-                                <option value="medicine">Medicine Specialized</option>
-                                <option value="pathology">Pathology</option>
-                                <option value="neurosurgeon">Neurosurgeon</option>
-                                <option value="blood-bank">Blood Bank</option>
-                            </select>
-                            { errors.department && <p className="text-red-500 text-xs">{ errors.department.message }</p> }
-                        </div> */}
+
 
                             {/* Doctor Name */ }
                             <div>
@@ -149,6 +135,20 @@ const Appointment = () => {
                                 />
                                 { errors.date && <p className="text-red-500 text-xs">{ errors.date.message }</p> }
                             </div>
+                            {/* Time */ }
+                            <div>
+                                <label htmlFor="time" className="text-xs xs:text-sm font-medium text-gray-700 mb-1">
+                                    Appointment Time
+                                </label>
+                                <input
+                                    type="time"
+                                    id="time"
+                                    { ...register("time", { required: "Time is required" }) }
+                                    className="h-[50px] w-full rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] px-2"
+                                />
+                                { errors.time && <p className="text-red-500 text-xs">{ errors.time.message }</p> }
+                            </div>
+
                             {/* Fee */ }
                             <div>
                                 <label htmlFor="fee" className="text-xs xs:text-sm font-medium text-gray-700 mb-1">
@@ -167,25 +167,27 @@ const Appointment = () => {
 
                         {/* Submit */ }
                         <div className="mt-8 pt-6 border-t border-gray-200 flex justify-end">
-                            <Link to="/payment">
-                                <button
-                                    type="submit"
-                                    className="sm:w-[100px] w-full h-[50px] text-xs sm:text-base bg-sky-500 rounded-[5px] p-[13px_25px] gap-[10px] text-white disabled:bg-gray-400"
-                                    /* kono ekta input fild jodi faka thake tahole submit button disable hoye thakbe  */
-                                    disabled={
-                                        !watch("name") ||
-                                        !watch("email") ||
-                                        !watch("phone") ||
-                                        !watch("address") ||
-                                        !watch("department") ||
-                                        !watch("gender") ||
-                                        !watch("date") ||
-                                        Object.keys(errors).length > 0
-                                    }
-                                >
-                                    Payment
-                                </button>
-                            </Link>
+
+                            <button
+                                type="submit"
+                                className="sm:w-[100px] w-full h-[50px] text-xs sm:text-base bg-sky-500 rounded-[5px] p-[13px_25px] gap-[10px] text-white disabled:bg-gray-400"
+                                /* kono ekta input fild jodi faka thake tahole submit button disable hoye thakbe  */
+                                disabled={
+                                    !watch("name") ||
+                                    !watch("email") ||
+                                    !watch("phone") ||
+                                    !watch("address") ||
+                                    !watch("doctor") ||
+                                    !watch("gender") ||
+                                    !watch("date") ||
+                                    !watch("fee") ||
+                                    !watch("time") ||
+                                    Object.keys(errors).length > 0
+                                }
+                            >
+                                Payment
+                            </button>
+
                         </div>
                         {/* hotline number */ }
                         <marquee direction="">Hot Line : 01639136200</marquee>
@@ -193,13 +195,11 @@ const Appointment = () => {
                     </form>
 
                 </div>
-            </section>
-            {/* <div className=" ml-5">
-                <h2 className="sm:text-xl text-[12px] font-bold mb-6 mt-8 py-1 text-gray-500">Book an Appointment</h2>
-            </div> */}
-            <section className="max-w-md  px-4 py-8 space-y-10 text-sm text-gray-700">
+            </section >
+            {/* After Booking Requirement */ }
+            < section className="max-w-md  px-4 py-8 space-y-10 text-sm text-gray-700" >
                 {/* Book an Appointment */ }
-                <div>
+                < div >
                     <h2 className="text-lg font-semibold mb-2">Book an Appointment</h2>
                     <p className="mb-4 text-gray-600">
                         Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh.
@@ -228,10 +228,10 @@ const Appointment = () => {
                             </a>
                         </div>
                     </div>
-                </div>
+                </ div>
 
-                {/* After Booking */ }
-                <div>
+                {/* After Booking requirement */ }
+                < div >
                     <h2 className="text-lg font-semibold mb-2">After Booking</h2>
                     <p className="text-gray-600 mb-3">
                         Hi fill in the details and submit the form. We will contact you via phone or email and fix a time schedule.
@@ -246,9 +246,9 @@ const Appointment = () => {
                         <li>Make sure you are feeling good</li>
                         <li>Have someone with you</li>
                     </ul>
-                </div>
-            </section>
-        </div>
+                </ div>
+            </section >
+        </div >
     );
 };
 
