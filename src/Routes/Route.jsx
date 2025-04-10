@@ -5,6 +5,7 @@ import Main from "../Layout/Main.jsx";
 import Home from "../Components/Home/Home.jsx";
 import Login from "../Pages/Login/Login.jsx";
 import Contact from "../Pages/Contact/Contact.jsx";
+import Doctors from "../Pages/Doctors/Doctors.jsx";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>
+            },
+            {
+                path: "/doctors",
+                element: <Doctors></Doctors>
             },
             {
                 path: '/login',

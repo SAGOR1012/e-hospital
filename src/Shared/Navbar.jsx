@@ -23,9 +23,9 @@ const Navbar = () => {
             {/* nav 1 */ }
             <div className='navbar bg-gray-800  flex justify-between'>
                 <div className=' '>
-                    <a className='btn btn-ghost  text-xl md:text-2xl  text-sky-500'>
+                    <Link to='/' className='btn btn-ghost  text-xl md:text-2xl  text-sky-500'>
                         E-hospital
-                    </a>
+                    </Link>
                 </div>
                 <div className=''>
                     {/* <div className='dropdown dropdown-end'>

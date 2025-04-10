@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Dr. Ayaan Rahman",
+    "specialist": "Cardiologist",
+    "qualification": "MBBS",
+    "description": "Dr. Rahman provides comprehensive cardiac care including preventive heart checkups, ECG, and cholesterol management.",
+    "email": "ayaan.rahman@hospital.com",
+    "image": "https://randomuser.me/api/portraits/men/32.jpg"
+  },
+  {
+    "name": "Dr. Nisha Verma",
+    "specialist": "Dermatologist",
+    "qualification": "MBBS",
+    "description": "Specializes in treating skin conditions such as acne, eczema, and cosmetic dermatology procedures.",
+    "email": "nisha.verma@hospital.com",
+    "image": "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    "name": "Dr. Samuel D’Costa",
+    "specialist": "Neurologist",
+    "qualification": "MBBS",
+    "description": "Expert in diagnosing and managing neurological disorders including epilepsy and Parkinson’s disease.",
+    "email": "samuel.dcosta@hospital.com",
+    "image": "https://randomuser.me/api/portraits/men/48.jpg"
+  },
+  {
+    "name": "Dr. Fatima Noor",
+    "specialist": "Pediatrician",
+    "qualification": "MBBS",
+    "description": "Dedicated to child healthcare with focus on immunizations, growth tracking, and developmental milestones.",
+    "email": "fatima.noor@hospital.com",
+    "image": "https://randomuser.me/api/portraits/women/65.jpg"
+  },
+  {
+    "name": "Dr. Rajeev Kapoor",
+    "specialist": "Orthopedic Surgeon",
+    "qualification": "MBBS",
+    "description": "Specializes in joint replacement, sports injuries, and bone health with a modern surgical approach.",
+    "email": "rajeev.kapoor@hospital.com",
+    "image": "https://randomuser.me/api/portraits/men/53.jpg"
+  },
+  {
+    "name": "Dr. Aisha Siddiqui",
+    "specialist": "Gynecologist",
+    "qualification": "MBBS",
+    "description": "Offers care in pregnancy, fertility consultations, menstrual issues, and overall women’s wellness.",
+    "email": "aisha.siddiqui@hospital.com",
+    "image": "https://randomuser.me/api/portraits/women/52.jpg"
+  },
+  {
+    "name": "Dr. Imran Malik",
+    "specialist": "Pulmonologist",
+    "qualification": "MBBS",
+    "description": "Provides diagnosis and treatment for respiratory conditions like asthma, bronchitis, and COPD.",
+    "email": "imran.malik@hospital.com",
+    "image": "https://randomuser.me/api/portraits/men/41.jpg"
+  },
+  {
+    "name": "Dr. Rina Das",
+    "specialist": "ENT Specialist",
+    "qualification": "MBBS",
+    "description": "Experienced in treating ear infections, hearing loss, sinus issues, and voice disorders.",
+    "email": "rina.das@hospital.com",
+    "image": "https://randomuser.me/api/portraits/women/39.jpg"
+  },
+  {
+    "name": "Dr. Varun Shetty",
+    "specialist": "Urologist",
+    "qualification": "MBBS",
+    "description": "Deals with urinary tract disorders, kidney stones, and male reproductive health.",
+    "email": "varun.shetty@hospital.com",
+    "image": "https://randomuser.me/api/portraits/men/38.jpg"
+  },
+  {
+    "name": "Dr. Meher Qureshi",
+    "specialist": "Gastroenterologist",
+    "qualification": "MBBS",
+    "description": "Expert in treating digestive disorders, liver conditions, and conducting endoscopy procedures.",
+    "email": "meher.qureshi@hospital.com",
+    "image": "https://randomuser.me/api/portraits/women/47.jpg"
+  }
+]

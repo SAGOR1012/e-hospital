@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -6,7 +7,9 @@ const Contact = () => {
     return (
 
         <div className="">
-
+            <Helmet>
+                <title>E-hospital | Contact</title>
+            </Helmet>
             {/* browser er upore tab title  likhar jonne react helmet use kora hoyeche */ }
             {/* <Helmet>
                 <title>SunCity | About</title>
