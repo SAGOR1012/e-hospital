@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 const Signup = () => {
+  /* create a context for call signin function  from AuthProvider  */
+  const { createUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -10,7 +13,20 @@ const Signup = () => {
 
   const onSubmit = (data) => {
     console.log('Signup Data:', data);
-    // Handle signup logic here
+    /* destructure  data object to get email and password */
+    const { email, password } = data;
+
+    createUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('new user create:', user);
+      })
+      /* error message form firebase  */
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+      });
   };
 
   return (

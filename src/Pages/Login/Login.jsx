@@ -1,16 +1,84 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+  /* create a context for call signin function  from AuthProvider  */
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  /* login korar por location a autometic niye jabe seita thik korar jonne path location lage  */
+  const location = useLocation();
+  /* navigate kora  */
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log('Login Data:', data);
-    // handle login logic here
+    const { email, password } = data;
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+
+        // ✅ Show success popup
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful!',
+          text: `Welcome back, ${loggedUser.email}`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        // 👉 Optional: navigate to dashboard or home
+        // navigate('/');
+
+        /* login in korar por kon locations a niye jabe seita korar jonne location use kora hoyeche  */
+        navigate(location?.state ? location?.state : '/');
+      })
+      .catch((error) => {
+        console.error(error);
+
+        // ❌ Show error popup
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: error.message,
+        });
+      });
+  };
+
+  /* Login with google */
+  const handleGoogleLogin = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Successfully Login',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        /* login korar por automatic location a niye jabe */
+        navigate(location?.state ? location?.state : '/');
+      })
+      .catch((error) => {
+        console.error(error);
+
+        // ❌ Show error popup
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: error.message,
+        });
+      });
   };
 
   return (
@@ -18,6 +86,7 @@ const Login = () => {
       <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
         <div className='max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-sm flex justify-center flex-1'>
           <div className='lg:w-1/2 xl:w-5/12 p-6 sm:p-12'>
+            {/* logo */}
             <div className='text-center'>
               <Link
                 to='/'
@@ -27,8 +96,11 @@ const Login = () => {
             </div>
             <div className='mt-12 flex flex-col items-center'>
               <div className='w-full flex-1 mt-8'>
+                {/* Google login button */}
                 <div className='flex flex-col items-center'>
-                  <button className='w-full max-w-xs font-semibold shadow-sm rounded-sm py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline'>
+                  <button
+                    onClick={handleGoogleLogin}
+                    className=' w-full max-w-xs font-semibold shadow-sm rounded-sm py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline'>
                     <div className='bg-white p-2 rounded-full'>
                       <svg
                         className='w-4'
