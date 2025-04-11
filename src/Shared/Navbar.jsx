@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import Login from '../Pages/Login/Login';
+import mainlogo from '../assets/main-logo.png';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -44,6 +45,13 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          to='/blog'
+          className={navLinkClass}>
+          Blog
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to='/contact'
           className={navLinkClass}>
           Contact
@@ -55,13 +63,17 @@ const Navbar = () => {
     <div className=' overflow-hidden'>
       {/* nav 1 */}
       <div className='navbar bg-gray-800  flex justify-between'>
-        <div className=' '>
+        <aside>
           <Link
             to='/'
-            className='btn btn-ghost  text-xl md:text-2xl  text-sky-500'>
-            E-hospital
+            className='btn btn-ghost '>
+            <img
+              className='w-16 h-16 md:w-24 md:h-24'
+              src={mainlogo}
+              alt=''
+            />{' '}
           </Link>
-        </div>
+        </aside>
         <div className=''>
           <div className='navbar-end'>
             {/* jodi login kora thake tahole image show korbe  */}

@@ -1,14 +1,15 @@
-import { Helmet } from "react-helmet";
+import Blog from '../Blogs/Blog';
+import Faq from '../FAQS/Faq';
+import Features from '../Features/Features';
 
 const Home = () => {
-    return (
-        <div>
-            <Helmet>
-                <title>E-hospital | Home</title>
-            </Helmet>
-            <h1 className='text-theme_color'>this is home</h1>
-        </div>
-    );
+  return (
+    <div className='mx-4 md:mx-12 lg:mx-40'>
+      <Blog></Blog>
+      <Features></Features>
+      <Faq></Faq>
+    </div>
+  );
 };
 
 export default Home;

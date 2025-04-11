@@ -22,3 +22,5 @@ If you are developing a production application, we recommend using TypeScript an
 # Install React Date picker for date picker
 
 # Install React hot toast for popup massage
+
+# Install React-Toastify for popup toast massage
