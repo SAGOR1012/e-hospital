@@ -17,7 +17,9 @@ const Navbar = () => {
   /* ........................ */
   // for active nav link
   const navLinkClass = ({ isActive }) =>
-    isActive ? 'text-sky-500 font-semibold' : 'text-gray-700';
+    isActive
+      ? 'text-sky-500 font-semibold'
+      : 'text-gray-700 hover:text-sky-500';
   /* .............................. */
 
   const navItems = (
@@ -43,13 +45,7 @@ const Navbar = () => {
           Appointment
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to='/blog'
-          className={navLinkClass}>
-          Blog
-        </NavLink>
-      </li>
+
       <li>
         <NavLink
           to='/contact'
@@ -60,9 +56,9 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className=' overflow-hidden'>
+    <div className=' overflow-hidden '>
       {/* nav 1 */}
-      <div className='navbar bg-gray-800  flex justify-between'>
+      <div className='navbar bg-gray-800  flex justify-between md:px-10'>
         <aside>
           <Link
             to='/'
