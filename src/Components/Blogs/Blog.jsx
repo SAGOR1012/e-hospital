@@ -17,7 +17,9 @@ const Blog = () => {
   };
 
   return (
-    <div className=''>
+    <div
+      data-aos='zoom-in-up'
+      className=''>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 p-6'>
         {/* Doctor Info */}
         <div className='flex flex-col text-center'>

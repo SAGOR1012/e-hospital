@@ -2,7 +2,9 @@ import { FaBriefcaseMedical, FaUserMd, FaAmbulance } from 'react-icons/fa';
 
 const Features = () => {
   return (
-    <div className='bg-white py-12 px-6 md:px-20 mt-20'>
+    <div
+      data-aos='zoom-in-up'
+      className='bg-white py-12 px-6 md:px-20 mt-20'>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-10 text-center'>
         {/* Feature 1: Advanced Technology */}
         <div className='space-y-4'>

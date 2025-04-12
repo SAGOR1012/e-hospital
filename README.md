@@ -24,3 +24,5 @@ If you are developing a production application, we recommend using TypeScript an
 # Install React hot toast for popup massage
 
 # Install React-Toastify for popup toast massage
+
+# Install AOS for using animation on scroll

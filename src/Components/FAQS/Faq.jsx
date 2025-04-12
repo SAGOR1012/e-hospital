@@ -50,7 +50,9 @@ const Faqs = ({ question, isOpen: defaultOpen }) => {
 
 const Faq = () => {
   return (
-    <div className='grid md:grid-cols-2 gap-20 px-6 py-10'>
+    <div
+      data-aos='zoom-in-right'
+      className='grid md:grid-cols-2 gap-20 px-6 py-10'>
       {/* FAQs */}
       <div>
         <h2 className='text-2xl font-bold mb-6'>FAQ's</h2>
@@ -68,7 +70,9 @@ const Faq = () => {
       {/* Why Us */}
       <div>
         <h2 className='text-2xl font-bold mb-6'>Why Us?</h2>
-        <div className='space-y-6'>
+        <div
+          data-aos='zoom-in-left'
+          className='space-y-6'>
           {WHY_US_DATA.map((item, i) => (
             <div
               key={i}

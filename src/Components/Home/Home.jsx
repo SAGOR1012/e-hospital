@@ -3,6 +3,7 @@ import Faq from '../FAQS/Faq';
 import Features from '../Features/Features';
 import ParallaxBanner from '../Hero/ParallaxBanner';
 import TechBanner from '../Hero/TechBanner';
+import Partners from '../Partners/Partners';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <Features></Features>
         <Faq></Faq>
         <TechBanner></TechBanner>
+        {/* <Partners></Partners> */}
       </div>
     </div>
   );

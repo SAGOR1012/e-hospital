@@ -1,7 +1,7 @@
 const TechBanner = () => {
   return (
-    <div className='relative mx-auto px-4'>
-      <div className='bg-cyan-100 flex items-center justify-between p-6 pr-16 relative rounded-md overflow-hidden'>
+    <div className='relative mx-auto px-4 mb-20 '>
+      <div className='bg-cyan-100 flex items-center justify-between p-6 pr-16 relative rounded-md overflow-hidden '>
         {/* Left vertical line */}
         <div className='absolute top-0 left-0 h-full w-1 bg-cyan-500'></div>
 
@@ -16,8 +16,8 @@ const TechBanner = () => {
         </div>
 
         {/* Button */}
-        <button className='border border-cyan-500 text-cyan-500 px-4 py-2 text-sm rounded hover:bg-cyan-500 hover:text-white transition'>
-          PURCHASE NOW
+        <button className=' border border-cyan-500 text-cyan-500 px-4 py-2 text-sm rounded hover:bg-cyan-500 hover:text-white transition'>
+          VISIT NOW
         </button>
 
         {/* Right angled arrow effect */}
