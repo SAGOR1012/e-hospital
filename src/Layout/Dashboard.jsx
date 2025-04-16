@@ -1,11 +1,16 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import UseAxiosPublic from '../Hooks/UseAxiosPublic';
+import { MdOutlineDashboard } from 'react-icons/md';
+import { CiBookmarkPlus } from 'react-icons/ci';
+import { LuAmbulance } from 'react-icons/lu';
 
 const Dashboard = () => {
+  const axiosPublic = UseAxiosPublic();
   // for active nav link
   const navLinkClass = ({ isActive }) =>
     isActive
       ? 'text-sky-500 font-semibold'
-      : 'text-gray-700 hover:text-sky-500';
+      : 'text-gray-700 hover:text-sky-500  font-semibold';
   /* .............................. */
   const navItems = (
     <>
@@ -13,6 +18,9 @@ const Dashboard = () => {
         <NavLink
           to='/dashboard/home'
           className={navLinkClass}>
+          <i className='text-xl'>
+            <MdOutlineDashboard />
+          </i>{' '}
           Home
         </NavLink>
       </li>
@@ -20,14 +28,29 @@ const Dashboard = () => {
         <NavLink
           to='/'
           className={navLinkClass}>
-          Appointment Request
+          <i className='text-xl'>
+            <CiBookmarkPlus />
+          </i>{' '}
+          Appointment
         </NavLink>
       </li>
       <li>
-        <NavLink className={navLinkClass}>Ambulance Booking</NavLink>
+        <NavLink className={navLinkClass}>
+          {' '}
+          <i className='text-xl'>
+            <LuAmbulance />
+          </i>{' '}
+          Ambulance{' '}
+        </NavLink>
       </li>
     </>
   );
+
+  /* for get all booki item form users */
+  axiosPublic.get('/dashboard/bookings').then((res) => {
+    console.log(res.data); // Show all bookings in dashboard
+  });
+
   return (
     <div className='drawer lg:drawer-open flex flex-col md:flex-row  '>
       <input
