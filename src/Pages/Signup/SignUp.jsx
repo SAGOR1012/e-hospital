@@ -2,30 +2,83 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
+import toast, { Toaster } from 'react-hot-toast';
 const Signup = () => {
+  const axiosPublic = UseAxiosPublic(); //get the configured Axios instance
   /* create a context for call signin function  from AuthProvider  */
-  const { createUser } = useContext(AuthContext);
+  const { createUser, signInWithGoogle } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  /* Handle email signup  */
   const onSubmit = (data) => {
     console.log('Signup Data:', data);
     /* destructure  data object to get email and password */
-    const { email, password } = data;
+    const { name, email, password } = data;
 
     createUser(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log('new user create:', user);
+        // Prepare user data to send to your DB
+        const newUser = {
+          name,
+          email,
+          password,
+          role: 'user',
+          createdAt: new Date().toISOString(),
+        };
+
+        // Save user data to database using Axios
+        axiosPublic
+          .post('/users', newUser)
+          .then((res) => {
+            console.log('User saved to database:', res.data);
+            toast.success('Signup successful!');
+          })
+          // error handle
+          .catch((err) => {
+            console.error('Error saving user to DB:', err);
+          });
       })
       /* error message form firebase  */
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(errorCode, errorMessage);
+      });
+  };
+  const handleGoogleSignup = () => {
+    // call your AuthProvider method for Google login
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log('Google user:', user);
+
+        const newUser = {
+          name: user.displayName,
+          email: user.email,
+          role: 'user',
+          createdAt: new Date().toISOString(),
+        };
+
+        axiosPublic
+          .post('/users', newUser)
+          .then((res) => {
+            console.log('Google user saved to DB:', res.data);
+            toast.success('Signup with Google successful!');
+          })
+          .catch((err) => {
+            console.error('Error saving Google user to DB:', err);
+          });
+      })
+      .catch((error) => {
+        console.error('Google signup error:', error.message);
+        toast.error('Google signup failed');
       });
   };
 
@@ -44,7 +97,9 @@ const Signup = () => {
             <div className='mt-12 flex flex-col items-center'>
               <div className='w-full flex-1 mt-8'>
                 <div className='flex flex-col items-center'>
-                  <button className='w-full max-w-xs font-semibold shadow-sm rounded-sm py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline'>
+                  <button
+                    onClick={handleGoogleSignup}
+                    className='w-full max-w-xs font-semibold shadow-sm rounded-sm py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline'>
                     <div className='bg-white p-2 rounded-full'>
                       <svg
                         className='w-4'
@@ -166,6 +221,10 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+      />
     </div>
   );
 };

@@ -7,6 +7,10 @@ import Doctors from '../Pages/Doctors/Doctors.jsx';
 import Appointment from '../Pages/Appoinment/Appointment.jsx';
 import PaymentForm from '../Pages/Payment/PaymentForm.jsx';
 import Signup from '../Pages/Signup/SignUp.jsx';
+import Dashboard from '../Layout/Dashboard.jsx';
+import MyBooking from '../Pages/Booking/MyBooking.jsx';
+import DashboardHome from '../Pages/Dashboard/Home/DashboardHome.jsx';
+import PrivetRoute from './PrivetRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +30,11 @@ const router = createBrowserRouter([
         element: <Appointment></Appointment>,
       },
       {
+        path: 'mybooking',
+        element: <MyBooking></MyBooking>,
+      },
+
+      {
         path: '/login',
         element: <Login></Login>,
       },
@@ -40,6 +49,20 @@ const router = createBrowserRouter([
       {
         path: '/payment',
         element: <PaymentForm></PaymentForm>,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
+    ),
+    children: [
+      {
+        path: 'home',
+        element: <DashboardHome></DashboardHome>,
       },
     ],
   },

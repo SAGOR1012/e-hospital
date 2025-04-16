@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   FaTwitter,
   FaFacebookF,
@@ -6,21 +5,16 @@ import {
   FaLinkedinIn,
   FaRegUser,
 } from 'react-icons/fa';
+import UseDoctorsData from '../../Hooks/UseDoctorsData';
 
 const Doctors = () => {
-  const [doctors, setDoctors] = React.useState([]);
-
-  useEffect(() => {
-    fetch('doctors.json')
-      .then((response) => response.json())
-      .then((data) => setDoctors(data))
-      .catch((error) => console.error('Error fetching doctor data:', error));
-  });
+  /* custom hook theke data fatch  kora ache  */
+  const [doctors] = UseDoctorsData();
   return (
     <div className='max-w-6xl mx-auto px-4 py-10'>
       {/* Doctor Heading  */}
       <div className='flex justify-center mb-5'>
-        <h1 class='text-2xl md:text-3xl pl-2 my-2 border-l-4  font-sans font-bold border-teal-400  text-gray-600 uppercase '>
+        <h1 className='text-2xl md:text-3xl pl-2 my-2 border-l-4  font-sans font-bold border-teal-400  text-gray-600 uppercase '>
           Our Doctors
         </h1>
       </div>

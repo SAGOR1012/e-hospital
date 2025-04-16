@@ -2,6 +2,7 @@ import React from 'react';
 import { FaTwitter, FaFacebookF, FaGooglePlusG, FaLinkedinIn } from "react-icons/fa";
 
 const doctorsInfoCard = (doctors) => {
+    
     return (
         <div className="flex flex-col md:flex-row items-center gap-6 p-4 border rounded-lg shadow-sm">
             <img

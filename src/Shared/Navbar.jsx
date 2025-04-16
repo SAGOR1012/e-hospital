@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
-import Login from '../Pages/Login/Login';
+// import Login from '../Pages/Login/Login';
 import mainlogo from '../assets/main-logo.png';
+import { LuAmbulance } from 'react-icons/lu';
+import UseBookingCart from '../Hooks/UseBookingCart';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
+  const [bookingCart] = UseBookingCart(); //booking item fetch kora hoyeche ekhen
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -24,6 +27,16 @@ const Navbar = () => {
 
   const navItems = (
     <>
+      <li>
+        <NavLink
+          to='/mybooking'
+          className={navLinkClass}>
+          <LuAmbulance className='text-xl'></LuAmbulance>
+          <div className='badge badge-sm badge-secondary'>
+            +{bookingCart.length}
+          </div>
+        </NavLink>
+      </li>
       <li>
         <NavLink
           to='/'

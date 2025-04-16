@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
 
 const Login = () => {
+  const axiosPublic = UseAxiosPublic(); // 👈 Use axios instance
   /* create a context for call signin function  from AuthProvider  */
   const { signIn, signInWithGoogle } = useContext(AuthContext);
 
@@ -13,11 +15,16 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  /* login korar por location a autometic niye jabe seita thik korar jonne path location lage  */
-  const location = useLocation();
-  /* navigate kora  */
-  const navigate = useNavigate();
 
+  /* location replace related function  */
+  const location = useLocation();
+  const navigate = useNavigate(); /* navigate kora  */
+  const from =
+    location.state?.from?.pathname ||
+    '/'; /* login korar por location a autometic niye jabe seita thik korar jonne path location lage  */
+  // console.log('state in the location login page', location.state);
+
+  /* Handle email signin */
   const onSubmit = (data) => {
     console.log('Login Data:', data);
     const { email, password } = data;
@@ -58,21 +65,44 @@ const Login = () => {
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Successfully Login',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        /* login korar por automatic location a niye jabe */
-        navigate(location?.state ? location?.state : '/');
+        const user = result.user;
+        console.log('Google User:', user);
+
+        // 👇 Prepare user data
+        const googleUser = {
+          name: user.displayName,
+          email: user.email,
+          role: 'user',
+          createdAt: new Date().toISOString(),
+        };
+
+        // 👇 Save to DB
+        axiosPublic
+          .post('/users', googleUser)
+          .then((res) => {
+            console.log('Google user saved to DB:', res.data);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Successfully Logged In',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            /* login in korar por kon locations a niye jabe seita korar jonne location use kora hoyeche  */
+            // navigate(from, { replace: true });
+            navigate(location?.state ? location?.state : '/');
+          })
+          .catch((err) => {
+            console.error('Error saving Google user to DB:', err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Something went wrong!',
+              text: 'Could not save user info to database.',
+            });
+          });
       })
       .catch((error) => {
         console.error(error);
-
-        // ❌ Show error popup
         Swal.fire({
           icon: 'error',
           title: 'Login Failed',
