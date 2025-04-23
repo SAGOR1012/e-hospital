@@ -80,7 +80,7 @@ const Login = () => {
         axiosPublic
           .post('/users', googleUser)
           .then((res) => {
-            console.log('Google user saved to DB:', res.data);
+            // console.log('Google user saved to DB:', res.data);
             Swal.fire({
               position: 'center',
               icon: 'success',

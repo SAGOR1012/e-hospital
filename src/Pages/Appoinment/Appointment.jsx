@@ -8,11 +8,12 @@ import Swal from 'sweetalert2';
 // import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
+
 import UseBookingCart from '../../Hooks/UseBookingCart';
 
 const Appointment = () => {
   const navigate = useNavigate(); // for navigation one page to another page like "Link"
-  const { user } = UseAuth(); // for get user data
+  const { user } = UseAuth(); // for get if login or not
   //   const url = import.meta.env.VITE_API_BASEURL; // url form env file
   const axiosSecure = UseAxiosSecure(); // use axios theke url fetch kora hoyeche
   const [, refetch] = UseBookingCart(); // use booking cart theke data re-fetch kora hoyeche
@@ -38,6 +39,7 @@ const Appointment = () => {
         doctor: data.doctor,
         fee: data.fee,
       };
+      /* Post user info bookings data to database */
       axiosSecure.post(`/bookings`, bookingItem).then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
@@ -88,11 +90,9 @@ const Appointment = () => {
                 <input
                   type='text'
                   id='name'
-                  defaultValue={user?.displayName || ''}
                   {...register('name', { required: 'Name is required' })}
                   className='h-[50px] w-full rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] px-2'
                 />
-
                 {errors.name && (
                   <p className='text-red-500 text-xs'>{errors.name.message}</p>
                 )}
@@ -108,11 +108,12 @@ const Appointment = () => {
                 <input
                   type='email'
                   id='email'
-                  defaultValue={user?.email || ''}
                   {...register('email', { required: 'Email is required' })}
                   className='h-[50px] w-full rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] px-2'
-                  readOnly
                 />
+                {errors.email && (
+                  <p className='text-red-500 text-xs'>{errors.email.message}</p>
+                )}
               </div>
 
               {/* Phone */}

@@ -1,8 +1,15 @@
 import toast, { Toaster } from 'react-hot-toast';
 import tipDoctorImg from '../../assets/tip-image.jpg';
 import { useForm } from 'react-hook-form';
+import UseAuth from '../../Hooks/UseAuth';
+import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
+import UseAmbulanceBookingCart from '../../Hooks/UseAmbulanceBookingCart';
 
 const Blog = () => {
+  const { user } = UseAuth(); // get login info
+  const axiosSecure = UseAxiosSecure(); // secure Axios instance
+  const [, refetch] = UseAmbulanceBookingCart(); // re-fetch booking data
+
   const {
     register,
     handleSubmit,
@@ -10,16 +17,41 @@ const Blog = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log('Form submitted:', data);
-    toast.success('Booking Confirmed!'); // toastify msg
-    reset(); // ✅ Reset the form after submission
+  const onSubmit = async (data) => {
+    if (user && user.email) {
+      const bookingDetails = {
+        area: data.area,
+        name: data.name,
+        phone: data.phone,
+        email: data.email || user.email, // fallback to user email
+        date: data.date,
+        userEmail: user.email,
+      };
+
+      try {
+        const res = await axiosSecure.post(
+          '/ambulancebookings',
+          bookingDetails
+        );
+        if (res.data.insertedId) {
+          /* success popup */
+          toast.success('Booking Confirmed!');
+          reset();
+          refetch();
+        } else {
+          toast.error('Booking failed. Please try again.');
+        }
+      } catch (error) {
+        console.error('Booking error:', error);
+        toast.error('Something went wrong!');
+      }
+    } else {
+      toast.error('Please log in to book an ambulance');
+    }
   };
 
   return (
-    <div
-      data-aos='zoom-in-up'
-      className=''>
+    <div data-aos='zoom-in-up'>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 p-6'>
         {/* Doctor Info */}
         <div className='flex flex-col text-center'>
@@ -34,6 +66,7 @@ const Blog = () => {
           </h3>
           <p className='italic text-sm text-gray-500'>Medicine, Surgery</p>
         </div>
+
         {/* Booking Form */}
         <div className='bg-gray-100 p-6 rounded-xl shadow space-y-4'>
           <h3 className='text-lg font-semibold text-cyan-600'>
@@ -97,6 +130,7 @@ const Blog = () => {
             </button>
           </form>
         </div>
+
         {/* Blog Content */}
         <div className='space-y-4'>
           <h2 className='font-bold text-lg'>
@@ -118,7 +152,7 @@ const Blog = () => {
         </div>
       </div>
 
-      {/* ✅ Toast Renderer for react-hot-toast */}
+      {/* Toast Renderer */}
       <Toaster position='top-right' />
     </div>
   );

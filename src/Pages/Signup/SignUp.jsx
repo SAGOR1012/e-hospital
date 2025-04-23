@@ -8,6 +8,8 @@ const Signup = () => {
   const axiosPublic = UseAxiosPublic(); //get the configured Axios instance
   /* create a context for call signin function  from AuthProvider  */
   const { createUser, signInWithGoogle } = useContext(AuthContext);
+  // const navigate = useNavigate();
+  // const from = location.state?.from?.pathname || '/';
   const {
     register,
     handleSubmit,
