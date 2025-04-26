@@ -15,7 +15,7 @@ const UseAmbulanceBookingCart = () => {
       return res.data;
     },
     // na dile oo hobe ei line
-    // enabled: !!user?.email, // Only run the query if user email is available
+    enabled: !!user?.email, // Only run the query if user email is available
   });
 
   return [ambulanceBookingCart, refetch];

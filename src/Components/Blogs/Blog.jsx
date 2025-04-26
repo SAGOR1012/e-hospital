@@ -23,8 +23,10 @@ const Blog = () => {
         area: data.area,
         name: data.name,
         phone: data.phone,
-        email: data.email || user.email, // fallback to user email
+        email: user.email,
         date: data.date,
+        time: data.time,
+        address: data.address,
         userEmail: user.email,
       };
 
@@ -34,7 +36,7 @@ const Blog = () => {
           bookingDetails
         );
         if (res.data.insertedId) {
-          /* success popup */
+          /* success  */
           toast.success('Booking Confirmed!');
           reset();
           refetch();
@@ -68,68 +70,86 @@ const Blog = () => {
         </div>
 
         {/* Booking Form */}
-        <div className='bg-gray-100 p-6 rounded-xl shadow space-y-4'>
-          <h3 className='text-lg font-semibold text-cyan-600'>
-            📅 Book an Ambulance
-          </h3>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className='space-y-4'>
-            <select
-              className='w-full border p-2 rounded'
-              {...register('area', { required: 'Area is required' })}>
-              <option value=''>Select Area</option>
-              <option value='Dhanmondi'>Dhanmondi</option>
-              <option value='Mohammadpur'>Mohammadpur</option>
-              <option value='Gabtoli'>Gabtoli</option>
-              <option value='Hazaribbugh'>Hazaribbugh</option>
-              <option value='Gulshan'>Gulshan</option>
-              <option value='Banani'>Banani</option>
-            </select>
-            {errors.area && (
-              <p className='text-red-500 text-sm'>{errors.area.message}</p>
-            )}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className='space-y-4'>
+          <select
+            className='w-full border p-2 rounded'
+            {...register('area', { required: 'Area is required' })}>
+            <option value=''>Select Area</option>
+            <option value='Dhanmondi'>Dhanmondi</option>
+            <option value='Mohammadpur'>Mohammadpur</option>
+            <option value='Gabtoli'>Gabtoli</option>
+            <option value='Hazaribbugh'>Hazaribbugh</option>
+            <option value='Gulshan'>Gulshan</option>
+            <option value='Banani'>Banani</option>
+          </select>
+          {errors.area && (
+            <p className='text-red-500 text-sm'>{errors.area.message}</p>
+          )}
 
-            <input
-              type='text'
-              placeholder='Your Name (required)'
-              className='w-full border p-2 rounded'
-              {...register('name', { required: 'Name is required' })}
-            />
-            {errors.name && (
-              <p className='text-red-500 text-sm'>{errors.name.message}</p>
-            )}
+          <input
+            type='text'
+            placeholder='Your Name (required)'
+            className='w-full border p-2 rounded'
+            {...register('name', { required: 'Name is required' })}
+          />
+          {errors.name && (
+            <p className='text-red-500 text-sm'>{errors.name.message}</p>
+          )}
 
-            <input
-              type='text'
-              placeholder='Your Phone (required)'
-              className='w-full border p-2 rounded'
-              {...register('phone', { required: 'Phone is required' })}
-            />
-            {errors.phone && (
-              <p className='text-red-500 text-sm'>{errors.phone.message}</p>
-            )}
+          <input
+            type='text'
+            placeholder='Your Phone (required)'
+            className='w-full border p-2 rounded'
+            {...register('phone', { required: 'Phone is required' })}
+          />
+          {errors.phone && (
+            <p className='text-red-500 text-sm'>{errors.phone.message}</p>
+          )}
 
-            <input
+          {/* <input
               type='email'
               placeholder='Your Email (optional)'
               className='w-full border p-2 rounded'
               {...register('email')}
-            />
+            /> */}
 
-            <input
-              type='date'
-              className='w-full border p-2 rounded'
-              {...register('date')}
-            />
+          <input
+            type='date'
+            className='w-full border p-2 rounded'
+            {...register('date', { required: 'Date is required' })}
+          />
+          {errors.date && (
+            <p className='text-red-500 text-sm'>{errors.date.message}</p>
+          )}
 
-            <button
-              type='submit'
-              className='w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 rounded'>
-              SUBMIT
-            </button>
-          </form>
-        </div>
+          <input
+            type='time'
+            className='w-full border p-2 rounded'
+            {...register('time', { required: 'Time is required' })}
+          />
+          {errors.time && (
+            <p className='text-red-500 text-sm'>{errors.time.message}</p>
+          )}
+
+          <textarea
+            placeholder='Pickup Address (required)'
+            className='w-full border p-2 rounded'
+            rows='2'
+            {...register('address', {
+              required: 'Address is required',
+            })}></textarea>
+          {errors.address && (
+            <p className='text-red-500 text-sm'>{errors.address.message}</p>
+          )}
+
+          <button
+            type='submit'
+            className='w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 rounded'>
+            SUBMIT
+          </button>
+        </form>
 
         {/* Blog Content */}
         <div className='space-y-4'>
@@ -153,7 +173,7 @@ const Blog = () => {
       </div>
 
       {/* Toast Renderer */}
-      <Toaster position='top-right' />
+      <Toaster position='top-center' />
     </div>
   );
 };

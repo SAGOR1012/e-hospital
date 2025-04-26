@@ -5,11 +5,13 @@ import { AuthContext } from '../providers/AuthProvider';
 import mainlogo from '../assets/main-logo.png';
 import { LuAmbulance } from 'react-icons/lu';
 import UseBookingCart from '../Hooks/UseBookingCart';
+import UseAmbulanceBookingCart from '../Hooks/UseAmbulanceBookingCart';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const [bookingCart] = UseBookingCart(); //booking item fetch kora hoyeche ekhen
+  const [ambulanceBooking] = UseAmbulanceBookingCart();
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -33,7 +35,7 @@ const Navbar = () => {
           className={navLinkClass}>
           <LuAmbulance className='text-xl'></LuAmbulance>
           <div className='badge badge-sm badge-secondary'>
-            +{bookingCart.length}
+            +{bookingCart.length} | {ambulanceBooking.length}
           </div>
         </NavLink>
       </li>
