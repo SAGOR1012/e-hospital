@@ -1,21 +1,46 @@
+import Swal from 'sweetalert2';
 import UseAllAmbulanceBookings from '../../../Hooks/UseAllAmbulanceBookings';
+import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 
 const DashboardAmbulanceBookingList = () => {
-  const [AllAmbulanceBookingList] = UseAllAmbulanceBookings();
+  const [AllAmbulanceBookingList, refetch] = UseAllAmbulanceBookings();
+  const axiosSecure = UseAxiosSecure();
 
-  const handleAmbulanceUpdate = (item) => {
-    console.log('Update ambulance booking:', item);
-    // open a modal or navigate to update page
+  const handleAmbulanceUpdate = (id) => {
+    console.log('Update ambulance booking:', id);
   };
 
   const handleAmbulanceDelete = (item) => {
-    console.log('Delete ambulance booking:', item);
-    // confirm and then delete logic
+    const id = item._id;
+    console.log(id);
+    Swal.fire({
+      title: 'Are you sure?',
+
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/ambulancebookings/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire('Deleted!', 'The booking has been deleted.', 'success');
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.error('Delete error:', error);
+            Swal.fire('Error!', 'Failed to delete booking.', 'error');
+          });
+      }
+    });
   };
 
   return (
     <div>
-      {/* ambulance */}
       <h1 className='text-2xl font-bold text-center my-2 border bg-sky-900 text-white py-3'>
         Ambulance Bookings : {AllAmbulanceBookingList.length}
       </h1>
@@ -32,14 +57,14 @@ const DashboardAmbulanceBookingList = () => {
               <th>Phone</th>
               <th>Email</th>
               <th>Pickup Point</th>
-              <th>Actions</th> {/* New column for buttons */}
+              <th>Actions</th>
             </tr>
           </thead>
 
           <tbody>
             {AllAmbulanceBookingList.map((item, index) => (
               <tr
-                key={index}
+                key={item._id}
                 className='hover:bg-base-200'>
                 <th>{index + 1}</th>
                 <td>{item.name}</td>
@@ -49,14 +74,7 @@ const DashboardAmbulanceBookingList = () => {
                 <td>{item.phone}</td>
                 <td>{item.email}</td>
                 <td>{item.address}</td>
-
-                {/* Action Buttons */}
                 <td className='flex flex-col md:flex-row gap-2'>
-                  <button
-                    onClick={() => handleAmbulanceUpdate(item)}
-                    className='btn btn-xs bg-blue-500 text-white hover:bg-blue-600'>
-                    Update
-                  </button>
                   <button
                     onClick={() => handleAmbulanceDelete(item)}
                     className='btn btn-xs bg-red-500 text-white hover:bg-red-600'>

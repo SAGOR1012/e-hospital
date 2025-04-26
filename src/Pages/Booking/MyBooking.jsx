@@ -53,8 +53,8 @@ const MyBooking = () => {
           </tbody>
         </table>
       </div>
-      {/* ambulance */}
 
+      {/* ambulance */}
       <h1 className='text-2xl font-bold text-center my-2 border bg-sky-900 text-white py-3'>
         Ambulance Bookings : {ambulanceBooking.length}
       </h1>

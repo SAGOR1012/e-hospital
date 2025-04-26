@@ -9,7 +9,7 @@ import UseAmbulanceBookingCart from '../Hooks/UseAmbulanceBookingCart';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  // console.log(user.email);
   const [bookingCart] = UseBookingCart(); //booking item fetch kora hoyeche ekhen
   const [ambulanceBooking] = UseAmbulanceBookingCart();
   const handleLogOut = () => {
@@ -33,7 +33,7 @@ const Navbar = () => {
         <NavLink
           to='/mybooking'
           className={navLinkClass}>
-          <LuAmbulance className='text-xl'></LuAmbulance>
+          <LuAmbulance className='text-xl' />
           <div className='badge badge-sm badge-secondary'>
             +{bookingCart.length} | {ambulanceBooking.length}
           </div>
@@ -60,7 +60,6 @@ const Navbar = () => {
           Appointment
         </NavLink>
       </li>
-
       <li>
         <NavLink
           to='/contact'
@@ -68,8 +67,20 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
+
+      {/* Only show Dashboard if user is admin */}
+      {user?.role === 'admin' && (
+        <li>
+          <NavLink
+            to='/dashboard/home'
+            className={navLinkClass}>
+            Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
+
   return (
     <div className=' overflow-hidden '>
       {/* nav 1 */}
@@ -108,10 +119,6 @@ const Navbar = () => {
                   <ul
                     tabIndex={0}
                     className='menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow'>
-                    <li>
-                      <a className='justify-between'>Profile</a>
-                    </li>
-
                     <li>
                       <a onClick={handleLogOut}>Logout</a>
                     </li>

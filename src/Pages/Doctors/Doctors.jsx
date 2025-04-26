@@ -18,6 +18,7 @@ const Doctors = () => {
           Our Doctors
         </h1>
       </div>
+      {/* doctor */}
       <div className='grid md:grid-cols-2 gap-8'>
         {doctors.map((doctors) => (
           <div
@@ -30,6 +31,7 @@ const Doctors = () => {
             />
             <div className='flex-1'>
               <div className='bg-gray-100 flex items-center px-4 py-2 mb-3 rounded'>
+                {/* icon */}
                 <div className='bg-cyan-500 text-white p-2 rounded mr-3'>
                   <FaRegUser />
                 </div>

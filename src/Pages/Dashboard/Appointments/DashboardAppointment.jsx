@@ -57,11 +57,6 @@ const DashboardAppointment = () => {
                 {/* Action Buttons */}
                 <td className='flex flex-col md:flex-row gap-2'>
                   <button
-                    onClick={() => handleUpdate(item)}
-                    className='btn btn-xs bg-blue-500 text-white hover:bg-blue-600'>
-                    Update
-                  </button>
-                  <button
                     onClick={() => handleDelete(item)}
                     className='btn btn-xs bg-red-500 text-white hover:bg-red-600'>
                     Delete

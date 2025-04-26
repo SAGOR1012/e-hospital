@@ -46,7 +46,7 @@ const Appointment = () => {
           /* Booking success message */
           toast.success('Booking successful!');
         }
-        // refetch the booking cart
+
         refetch();
       });
       //   console.log(data.name);
@@ -78,6 +78,7 @@ const Appointment = () => {
           <h2 className='sm:text-xl text-[12px] font-bold mb-6'>
             Appointment Form
           </h2>
+          {/* react hook form */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
               {/* Name */}

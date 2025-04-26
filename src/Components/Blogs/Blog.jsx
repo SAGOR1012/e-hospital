@@ -68,8 +68,7 @@ const Blog = () => {
           </h3>
           <p className='italic text-sm text-gray-500'>Medicine, Surgery</p>
         </div>
-
-        {/* Booking Form */}
+        {/* Booking Form */} {/* rect hook form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className='space-y-4'>
@@ -150,7 +149,6 @@ const Blog = () => {
             SUBMIT
           </button>
         </form>
-
         {/* Blog Content */}
         <div className='space-y-4'>
           <h2 className='font-bold text-lg'>

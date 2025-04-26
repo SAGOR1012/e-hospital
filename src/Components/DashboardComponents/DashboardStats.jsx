@@ -1,3 +1,4 @@
+import { FaUserAlt } from 'react-icons/fa';
 import UseAllAmbulanceBookings from '../../Hooks/UseAllAmbulanceBookings';
 import UseAllAppoinment from '../../Hooks/UseAllAppoinment';
 import UseAllUsers from '../../Hooks/UseAllUsers';
@@ -30,17 +31,17 @@ const DashboardStats = () => {
         Icon={HiOutlineTruck}
         status='Pending'
       />
-      <DashboardStateCard
+      {/* <DashboardStateCard
         title='Operations'
         value='46'
         textColor='text-sky-400'
         Icon={HiOutlineScissors}
-      />
+      /> */}
       <DashboardStateCard
         title='Total Users'
         value={AllUsers.length}
         textColor='text-purple-400'
-        Icon={HiOutlineDocumentReport}
+        Icon={FaUserAlt}
         status='Verified'
       />
     </div>

@@ -13,6 +13,7 @@ import DashboardHome from '../Pages/Dashboard/Home/DashboardHome.jsx';
 import PrivetRoute from './PrivetRoute.jsx';
 import DashboardAppointment from '../Pages/Dashboard/Appointments/DashboardAppointment.jsx';
 import DashboardAmbulanceBookingList from '../Pages/Dashboard/Ambulance/DashboardAmbulanceBookingList.jsx';
+import DashboardAllUsers from '../Pages/Dashboard/Users/DashboardAllUsers.jsx';
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
         element: (
           <DashboardAmbulanceBookingList></DashboardAmbulanceBookingList>
         ),
+      },
+      {
+        path: 'dashboardaalluserlist',
+        element: <DashboardAllUsers></DashboardAllUsers>,
       },
     ],
   },

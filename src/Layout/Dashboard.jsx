@@ -3,6 +3,7 @@ import UseAxiosPublic from '../Hooks/UseAxiosPublic';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { CiBookmarkPlus } from 'react-icons/ci';
 import { LuAmbulance } from 'react-icons/lu';
+import { FaUserFriends } from 'react-icons/fa';
 
 const Dashboard = () => {
   const axiosPublic = UseAxiosPublic();
@@ -36,11 +37,18 @@ const Dashboard = () => {
           <LuAmbulance className='text-2xl' /> Ambulance
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to='/dashboard/dashboardaalluserlist'
+          className={navLinkClass}>
+          <FaUserFriends className='text-2xl' /> All Users
+        </NavLink>
+      </li>
     </>
   );
 
   axiosPublic.get('/dashboard/bookings').then((res) => {
-    console.log(res.data);
+    // console.log(res.data);
   });
 
   return (
