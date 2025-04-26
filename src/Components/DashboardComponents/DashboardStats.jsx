@@ -13,35 +13,35 @@ const DashboardStats = () => {
   const [AllUsers] = UseAllUsers();
   const [AllAppointments] = UseAllAppoinment();
   const [AllAmbulanceBookings] = UseAllAmbulanceBookings();
-  const ap = AllAmbulanceBookings;
-  console.log('ambulance ', ap);
-  // console.log(AllUsers);
 
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-4'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4'>
       <DashboardStateCard
         title='Appointments'
         value={AllAppointments.length}
-        color='bg-blue-400'
+        textColor='text-blue-400' // Passing text color instead of bg color
         Icon={HiOutlineCalendar}
+        status='Pending'
       />
       <DashboardStateCard
-        title='Booking Ambulance'
+        title='Ambulance Bookings'
         value={AllAmbulanceBookings.length}
-        color='bg-pink-400'
+        textColor='text-pink-400'
         Icon={HiOutlineTruck}
+        status='Pending'
       />
       <DashboardStateCard
-        title='Operation'
+        title='Operations'
         value='46'
-        color='bg-sky-400'
+        textColor='text-sky-400'
         Icon={HiOutlineScissors}
       />
       <DashboardStateCard
         title='Total Users'
         value={AllUsers.length}
-        color='bg-purple-400'
+        textColor='text-purple-400'
         Icon={HiOutlineDocumentReport}
+        status='Verified'
       />
     </div>
   );

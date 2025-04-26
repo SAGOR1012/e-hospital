@@ -11,6 +11,8 @@ import Dashboard from '../Layout/Dashboard.jsx';
 import MyBooking from '../Pages/Booking/MyBooking.jsx';
 import DashboardHome from '../Pages/Dashboard/Home/DashboardHome.jsx';
 import PrivetRoute from './PrivetRoute.jsx';
+import DashboardAppointment from '../Pages/Dashboard/Appointments/DashboardAppointment.jsx';
+import DashboardAmbulanceBookingList from '../Pages/Dashboard/Ambulance/DashboardAmbulanceBookingList.jsx';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,16 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <DashboardHome></DashboardHome>,
+      },
+      {
+        path: 'dashboardappointments',
+        element: <DashboardAppointment></DashboardAppointment>,
+      },
+      {
+        path: 'dashboardambulancebookinglist',
+        element: (
+          <DashboardAmbulanceBookingList></DashboardAmbulanceBookingList>
+        ),
       },
     ],
   },
