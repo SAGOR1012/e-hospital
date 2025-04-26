@@ -35,7 +35,9 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className={navLinkClass}>
+        <NavLink
+          to='/'
+          className={navLinkClass}>
           {' '}
           <i className='text-xl'>
             <LuAmbulance />
