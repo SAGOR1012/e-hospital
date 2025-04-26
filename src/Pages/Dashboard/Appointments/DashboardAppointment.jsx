@@ -1,15 +1,37 @@
+import Swal from 'sweetalert2';
 import UseAllAppoinment from '../../../Hooks/UseAllAppoinment';
+import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 
 const DashboardAppointment = () => {
-  const [AllAppoinment] = UseAllAppoinment();
-  const handleUpdate = (item) => {
-    console.log('Update item:', item);
-    // You can open a modal or navigate to an update form
-  };
+  const [AllAppoinment, refetch] = UseAllAppoinment();
+  const axiosSecure = UseAxiosSecure();
 
   const handleDelete = (item) => {
-    console.log('Delete item:', item);
-    // You can show a confirmation alert before deleting
+    const id = item._id;
+    console.log(id);
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/bookings/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire('Deleted!', 'The booking has been deleted.', 'success');
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.error('Delete error:', error);
+            Swal.fire('Error!', 'Failed to delete booking.', 'error');
+          });
+      }
+    });
   };
   return (
     <div>

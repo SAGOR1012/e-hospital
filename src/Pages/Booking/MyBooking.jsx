@@ -1,22 +1,29 @@
+import Swal from 'sweetalert2';
 import UseAmbulanceBookingCart from '../../Hooks/UseAmbulanceBookingCart';
 import UseBookingCart from '../../Hooks/UseBookingCart';
 
 const MyBooking = () => {
   const [myBooking] = UseBookingCart();
   const [ambulanceBooking] = UseAmbulanceBookingCart();
-  const aBooking = ambulanceBooking;
-  console.log('ambulance', aBooking);
-  const booking = myBooking;
-  console.log(booking);
+
+  const handleDoctorBookingUpdate = () => {
+    Swal.fire({
+      title: '01639136200',
+      text: 'Please contact the help center to update your information.',
+      icon: 'info',
+      confirmButtonText: 'Okay',
+      confirmButtonColor: '#3085d6',
+    });
+  };
 
   return (
     <div className='px-5'>
+      {/* Doctor Appointments */}
       <h1 className='text-2xl font-bold text-center my-2 border bg-sky-500 text-white py-3'>
-        Doctor Appoinment : {myBooking.length}
+        Doctor Appointment: {myBooking.length}
       </h1>
       <div className='overflow-x-auto'>
         <table className='table'>
-          {/* head */}
           <thead>
             <tr>
               <th>#</th>
@@ -29,11 +36,10 @@ const MyBooking = () => {
               <th>Email</th>
               <th>Gender</th>
               <th>Address</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-
             {myBooking.map((item, index) => (
               <tr
                 key={index}
@@ -48,15 +54,22 @@ const MyBooking = () => {
                 <td>{item.email}</td>
                 <td>{item.gender}</td>
                 <td>{item.address}</td>
+                <td>
+                  <button
+                    onClick={() => handleDoctorBookingUpdate(item)}
+                    className='btn btn-xs bg-blue-500 text-white hover:bg-blue-600'>
+                    Update
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      {/* ambulance */}
+      {/* Ambulance Bookings */}
       <h1 className='text-2xl font-bold text-center my-2 border bg-sky-900 text-white py-3'>
-        Ambulance Bookings : {ambulanceBooking.length}
+        Ambulance Bookings: {ambulanceBooking.length}
       </h1>
       <div className='overflow-x-auto'>
         <table className='table'>
@@ -70,6 +83,7 @@ const MyBooking = () => {
               <th>Phone</th>
               <th>Email</th>
               <th>Pickup Point</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -85,6 +99,13 @@ const MyBooking = () => {
                 <td>{item.phone}</td>
                 <td>{item.email}</td>
                 <td>{item.address}</td>
+                <td>
+                  <button
+                    onClick={() => handleDoctorBookingUpdate(item)}
+                    className='btn btn-xs bg-blue-500 text-white hover:bg-blue-600'>
+                    Update
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

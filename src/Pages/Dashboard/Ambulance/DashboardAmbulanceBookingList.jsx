@@ -6,16 +6,11 @@ const DashboardAmbulanceBookingList = () => {
   const [AllAmbulanceBookingList, refetch] = UseAllAmbulanceBookings();
   const axiosSecure = UseAxiosSecure();
 
-  const handleAmbulanceUpdate = (id) => {
-    console.log('Update ambulance booking:', id);
-  };
-
   const handleAmbulanceDelete = (item) => {
     const id = item._id;
     console.log(id);
     Swal.fire({
       title: 'Are you sure?',
-
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
