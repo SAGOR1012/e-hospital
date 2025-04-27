@@ -1,7 +1,10 @@
 # Hospital Management System
 
-![Project Overview](D:\Projeects\EHospital\EHospital_frontend\e-hospital-frontend\src\assets\home to.png)
+![Project Overview](./src//assets/home.png)
 
+<p align="center">
+  <img src="/src/assets/home to.png" alt="Project Overview" width="600" />
+</p>
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
